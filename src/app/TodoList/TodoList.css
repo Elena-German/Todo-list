@@ -1,0 +1,6 @@
+.todo-list {
+  display: table;
+  padding-bottom: 30px;
+  border-spacing: 10px;
+  width: 100%;
+}

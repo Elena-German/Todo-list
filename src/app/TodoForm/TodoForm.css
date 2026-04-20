@@ -1,0 +1,53 @@
+ .todo-form .form-check-input.custom-checkbox {
+   border-radius: 0%;
+   width: 1em;
+   height: 1em;
+   margin-top: 0;
+   border-color: #7c7a79;
+ }
+
+  .todo-form .form-check-input.custom-checkbox:focus {
+   box-shadow: none;
+   border-color: #7c7a79;
+ }
+
+ .todo-form .form-check-input:checked {
+   background-color: #7c7a79;
+   border-color: #7c7a79;
+   border-radius: 0%;
+ }
+
+ .todo-form input{
+  margin-right: 10px;
+ }
+
+.todo-form button {
+  width: auto;
+  background: linear-gradient(90deg, #f79913, #da4503);
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: 0px;
+  border-radius: 8px;
+  padding: 5px 24px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.todo-form button:hover {
+background: linear-gradient(90deg, #da4503, #f79913);
+}
+
+.todo-form button:active {
+  transform: scale(0.95);
+}
+
+
+
+
+

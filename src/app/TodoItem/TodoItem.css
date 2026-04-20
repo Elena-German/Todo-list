@@ -1,0 +1,17 @@
+.todo-item {
+  display: table-row;
+  width: 100%;
+}
+
+.todo-item span {
+  padding-left: 20px;
+  display: table-cell;
+}
+
+.btn-delete {
+  width: 20px;
+  height: 20px;
+  background: url('delete.svg') no-repeat center;
+  border: none;
+
+}

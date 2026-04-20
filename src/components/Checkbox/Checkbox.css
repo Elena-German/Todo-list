@@ -1,0 +1,19 @@
+ .form-check-input.custom-checkbox {
+   border-radius: 50%;
+   width: 1.5em;
+   height: 1.5em;
+   margin-top: 0;
+   border-color: #da4503;
+   vertical-align: middle;
+ }
+
+ .form-check-input.custom-checkbox:focus {
+   box-shadow: none;
+   border-color: #da4503;
+ }
+
+ .form-check-input:checked {
+   background-color: #da4503ed;
+   border-color: #da4503;
+   border-radius: 50%;
+ }
