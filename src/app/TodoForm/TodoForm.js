@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Checkbox } from 'components';
+import { TodoContext } from 'app/TodoContext';
 import 'app/TodoForm/TodoForm.css';
 
-export function TodoForm({ create }) {
+export function TodoForm() {
   const [name, setName] = useState('');
   const [info, setInfo] = useState('');
   const [important, setImportant] = useState(false);
 
+  const context = useContext(TodoContext);
+
   const handleClick = () => {
     if (name.trim() && info.trim()) {
-      create(name, info, important);
+      context.create(name, info, important);
       setName('');
       setInfo('');
       setImportant(false);

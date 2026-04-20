@@ -1,5 +1,5 @@
 {
-  "homepage": "http://yuribenjamin.github.io/my-app",
+  "homepage": "https://github.com",
   "name": "todo-app",
   "version": "1.0.0",
   "description": "",
@@ -19,7 +19,7 @@
     "fix:styles": "stylelint --fix ./src/**/*.css",
     "lint:ts": "eslint src/**/*.{ts,tsx}",
     "fix:ts": "eslint src/**/*.{ts,tsx} --quiet --fix",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",
@@ -49,6 +49,7 @@
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "4.0.0",
     "cssnano": "5.1.11",
+    "cypress": "^15.14.0",
     "dotenv": "16.0.1",
     "dotenv-expand": "8.0.3",
     "esbuild-loader": "2.19.0",
