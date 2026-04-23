@@ -1,20 +1,43 @@
-import { TodoContext } from 'app/TodoContext';
+import { connect } from 'react-redux';
 import { TodoItem } from 'app/TodoItem/TodoItem';
 import 'app/TodoList/TodoList.css';
-import { useContext } from 'react';
 
-export function TodoList() {
-  const context = useContext(TodoContext);
-
+function TodoList({ items }) {
   return (
     <>
       <div className="todo-list">
-        {context.todos.length > 0 ? (
-          context.todos.map((todo) => <TodoItem key={todo.id} {...todo} />)  // { id, name, info, isImportant, isCompleted }
-        ) : (
-          <p>Список задач пустой</p>
-        )}
+        {items.length > 0 ? items.map((item) => <TodoItem key={item.id} id={item.id} />) : <p>Список задач пустой</p>}
       </div>
     </>
   );
 }
+
+function mapStateToProps(state) {
+  //  Функция подписки на обновление хранилища. Может быть объявлена с одним или двумя параметрами — это state и ownProps.
+  //  Если функция объявлена с одним параметром — она будет вызываться всякий раз, когда изменяется состояние хранилища.
+  //  В качестве единственного аргумента будет передано состояние хранилища.
+  //  Если функция объявлена с двумя параметрами — она будет вызываться всякий раз, когда изменяется состояние хранилища или
+  //  когда компонент-оболочка получает новые значения пропсов.
+  //  В качестве первого аргумента будет передано состояние хранилища, в качестве второго — собственные пропсы обернутого компонента.
+
+  // Результат выполнения mapStateToProps сравнивается с предыдущим результатом исполнения с использованием функции shallowEqual.
+  // То есть содержимое объекта будет сравниваться поле за полем по ссылке или по значению, и если будет найдено различие, то компонент будет перерисован.
+
+  //при любом изменении в store, будут вызваны все активные mapStateToProps
+  return {
+    items: state.todos,
+  };
+}
+
+const TodoListConnected = connect(mapStateToProps)(TodoList); // const SomeComponentConnected = connect(...)(исходный компонент);
+// function connect(mapStateToProps?, mapDispatchToProps?, mergeProps?, options?)
+// Функция connect подключает исходный компонент к хранилищу Redux.
+// Во-первых, компонент получает данные из хранилища, которые нужны ему для работы.
+// Во-вторых, компонент получает функции для отправки действий в хранилище.
+// Функция connect не изменяет переданный компонент, а возвращает новый связанный компонент, который является оболочкой для исходного.
+
+// Если функция mapStateToProps указана, то новый компонент-оболочка будет подписан на обновления хранилища.
+// Это значит, что mapStateToProps будет вызываться каждый раз, когда хранилище обновляется.
+// Чтобы не подписываться на обновления хранилища — нужно передать connect первым аргументом null.
+
+export { TodoListConnected as TodoList }; //новый компонент оболочка
