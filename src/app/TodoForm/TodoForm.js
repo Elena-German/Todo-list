@@ -1,25 +1,26 @@
 import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
-import { connect } from 'react-redux';
+import * as uuid from 'uuid';
+import { useDispatch } from 'react-redux';
+import { actions } from 'redux/actions';
 import { Checkbox } from 'components';
-import { todoCreate } from 'redux/todoActions';
 import 'app/TodoForm/TodoForm.css';
 
-function TodoForm(props) {
+export function TodoForm() {
   const [name, setName] = useState('');
   const [info, setInfo] = useState('');
   const [important, setImportant] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     if (name.trim() && info.trim()) {
       const data = {
-        id: uuid(),
+        id: uuid.v4(),
         name: name,
         info: info,
         isImportant: important,
         isCompleted: false,
       };
-      props.dispatch(todoCreate(data));
+      dispatch(actions.todo.create(data));
       setName('');
       setInfo('');
       setImportant(false);
@@ -35,7 +36,3 @@ function TodoForm(props) {
     </div>
   );
 }
-
-const TodoFormConnected = connect()(TodoForm);
-
-export { TodoFormConnected as TodoForm };

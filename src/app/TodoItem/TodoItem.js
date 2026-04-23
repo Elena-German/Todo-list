@@ -1,13 +1,21 @@
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox } from 'components';
 import { actions } from 'redux/actions';
 import 'app/TodoItem/TodoItem.css';
 
-function TodoItem({ id, name, info, isImportant, isCompleted, dispatch }) {
+export function TodoItem(props) {
+  const todo = useSelector((state) => state.todos.find((item) => item.id === props.id)); // извлекаем их хранилища один элемент списка задач по id
+  const { id, name, info, isImportant, isCompleted } = todo;
+
+  const dispatch = useDispatch(); //просто возвращает функцию store.dispatch
+
+  // создаем две функции для отправки экшенов в хранилище
+  const toggle = () => dispatch(actions.todo.toggle(id));
+  const remove = () => dispatch(actions.todo.remove(id));
+
   return (
     <div className="todo-item">
-      <Checkbox checked={isCompleted} onChange={() => dispatch(actions.todo.toggle(id))} />
+      <Checkbox checked={isCompleted} onChange={toggle} />
       <span className={isImportant ? ' fw-bold' : ''} style={isCompleted ? { textDecoration: 'line-through' } : {}}>
         {name}
       </span>
@@ -15,36 +23,9 @@ function TodoItem({ id, name, info, isImportant, isCompleted, dispatch }) {
         {info}
       </span>
       <span>
-        <button className="btn-delete" onClick={() => dispatch(actions.todo.remove(id))}></button>
+        <button className="btn-delete" onClick={remove}></button>
       </span>
       {isImportant}
     </div>
   );
 }
-
-/* ДО ОПТИМИЗАЦИИ
-
-function mapStateToProps(state, ownProps) { //Результатом будет простой объект, который будет объединен с собственными пропсами обернутого компонента.
-  return state.todos.find((item) => item.id === ownProps.id); // возвращаем объект типа { id: 3, name: 'Третья задача', info: 'описание', isCompleted: false }
-}
-
-const TodoItemConnected = connect(mapStateToProps)(TodoItem);
-
-*/
-
-// ПОСЛЕ ОПТИМИЗАЦИИ (для каждого экземпляра компонента TodoItem создать свой экземпляр мемоизированного селектора )
-const createItemSelector = () =>
-  createSelector(
-    (state) => state.todos,
-    (state, id) => id,
-    (items, id) => {
-      return items.find((item) => item.id === id);
-    }
-  );
-
-const createMapStateToProps = () => {
-  const itemSelector = createItemSelector();
-  return (state, ownProps) => itemSelector(state, ownProps.id); // возвращаемая ф-ция будет использоваться как фактическая ф-ция mapStateToProps
-};
-const TodoItemConnected = connect(createMapStateToProps)(TodoItem);
-export { TodoItemConnected as TodoItem };

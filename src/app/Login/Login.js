@@ -1,9 +1,14 @@
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { actions } from 'redux/actions';
+import { selectors } from 'redux/selectors'
 
-function Login({ auth, dispatch }) {
-  const login = () => dispatch(actions.user.login()); //вход в уз
-  const logout = () => dispatch(actions.user.logout()); // выход из уз
+export function Login() {
+  const auth = useSelector(selectors.user.auth); // извлекаем их хранилища данные по авторизации (да,нет)
+
+  // создаем две функции для отправки экшенов в хранилище
+  const dispatch = useDispatch();
+  const login = () => dispatch(actions.user.login());
+  const logout = () => dispatch(actions.user.logout());
 
   return (
     <div className="user-login">
@@ -23,13 +28,3 @@ function Login({ auth, dispatch }) {
     </div>
   );
 }
-
-function mapStateToProps(state) {
-  return {
-    auth: state.user.auth,
-  };
-}
-
-const LoginConnected = connect(mapStateToProps)(Login);
-
-export { LoginConnected as Login };

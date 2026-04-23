@@ -9,7 +9,6 @@ import { Login } from 'app/Login/Login';
 function App() {
   return (
     <Provider store={store}>
-      {' '}
       {/* делает хранилище Redux доступным для всех вложенных компонентов */}
       <PageContainer>
         <div className="App">
