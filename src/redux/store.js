@@ -1,12 +1,12 @@
 //Глобальное хранилище приложения
 
 import { configureStore } from '@reduxjs/toolkit';
-import { todoReducer } from 'redux/todoReducer.js';
-import { userReducer } from 'redux/userReducer';
+import todoReducer from 'redux/todoSlice';
+import userReducer from 'redux/userSlice';
 
-export const store = configureStore({
-  /* метод создания хранилища Redux.
-// Он использует низкоуровневый метод createStore из ядра Redux, но дополняет его настройками по умолчанию для удобства разработки
+/* метод создания хранилища Redux.
+
+Он использует низкоуровневый метод createStore из ядра Redux, но дополняет его настройками по умолчанию для удобства разработки
 
 configureStore({
  reducer:                     - Одна функция, она будет напрямую использоваться в качестве корневого редьюсера для хранилища
@@ -32,9 +32,9 @@ enhancers?:                  - Функция обратного вызова д
 })
 
 */
+export const store = configureStore({
   reducer: {
     todos: todoReducer,
     user: userReducer,
   },
-  devTools: process.env.NODE_ENV !== 'production', // В режиме разработки Redux DevTools будет активна, в производственной — нет
 });

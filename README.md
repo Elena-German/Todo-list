@@ -10,6 +10,7 @@ React, React-router-dom, Typescript, Redux, Axios, React Hook Form, Yup, Webpack
 3 - локальный, на js, на классическом Redux connect
 4 - локальный, на js, Redux  на хуках
 5 - локальный, на js, на Redux Toolkit
+6 - локальный, на js, Redux Toolkit на слайсах
 
 ## Структура
 

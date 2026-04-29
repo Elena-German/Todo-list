@@ -1,5 +1,5 @@
-import { todoCreate, todoToggle, todoRemove } from 'redux/todoActions.js';
-import { userLogin, userLogout } from 'redux/userActions';
+import { create as todoCreate, toggle as todoToggle, remove as todoRemove } from 'redux/todoSlice';
+import { login as userLogin, logout as userLogout } from 'redux/userSlice';
 
 export const actions = {
     todo: {
