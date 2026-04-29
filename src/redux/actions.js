@@ -3,7 +3,7 @@ import { userLogin, userLogout } from 'redux/userActions';
 
 export const actions = {
     todo: {
-        create: todoCreate, //свойство содержит функцию, которая возвращает объект действия (тип type и данные payload)
+        create: todoCreate, // содержит функцию, которая возвращает объект действия (тип type и данные payload)
         toggle: todoToggle,
         remove: todoRemove,
     },

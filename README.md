@@ -3,6 +3,14 @@
 
 React, React-router-dom, Typescript, Redux, Axios, React Hook Form, Yup, Webpack, Eslint, Prettier
 
+## Версии проекта
+
+1 - самый простой локальный проект на js на пропсах
+2 - локальный, на js, передача данных через useContext
+3 - локальный, на js, на классическом Redux connect
+4 - локальный, на js, Redux  на хуках
+5 - локальный, на js, на Redux Toolkit
+
 ## Структура
 
 ```
